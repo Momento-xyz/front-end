@@ -59,7 +59,7 @@ const SwitchNetworkSelect: React.FC = () => {
               <li key={index}>
                 <button
                   className={clsx(
-                    'w-full text-left px-4 py-2 hover:bg-gray-800',
+                    'w-full text-left px-4 py-2 bg-black hover:bg-gray-800',
                     selectedChain?.id === chain.id && 'bg-gray-700',
                   )}
                   onClick={() => {
