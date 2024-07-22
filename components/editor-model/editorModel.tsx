@@ -10,7 +10,7 @@ const EditorModel: React.FC = () => {
     '// Insert a .sol file content or an ABI',
   );
   const [fileType, setFileType] = useState<FileType>('plaintext');
-  const [address, setAddress] = React.useState<string>('');
+  const [contractAddress, setContractAddress] = React.useState<string>('');
 
   React.useEffect(() => {
     if (plainText) {
@@ -39,11 +39,11 @@ const EditorModel: React.FC = () => {
         <p>
           Detected file type: {fileType !== 'plaintext' ? fileType : 'Unknown'}
         </p>
-        <Form address={address} setAddress={setAddress} />
+        <Form address={contractAddress} setAddress={setContractAddress} />
         <OutputList
           plainText={plainText}
           fileType={fileType}
-          address={address}
+          contractAddress={contractAddress}
         />
       </div>
     </div>

@@ -36,13 +36,7 @@ export const extractFunctionsFromAbi = (
 
   abi.forEach((item: any) => {
     if (item.type === 'function') {
-      const func: AbiFunction = {
-        name: item.name,
-        type: item.type,
-        stateMutability: item.stateMutability,
-        inputs: item.inputs,
-        outputs: item.outputs,
-      };
+      const func: AbiFunction = item;
 
       if (item.stateMutability === 'view' || item.stateMutability === 'pure') {
         readFunctions.push(func);

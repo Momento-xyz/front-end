@@ -9,13 +9,13 @@ import FunctionCard from './function-card/function-card';
 interface OutputListProps {
   plainText: string | undefined;
   fileType: FileType;
-  address: string;
+  contractAddress: string;
 }
 
 const OutputList: React.FC<OutputListProps> = ({
   plainText,
   fileType,
-  address,
+  contractAddress,
 }) => {
   const [outputs, setOutputs] = React.useState<ExtractedFunctions>({
     readFunctions: [],
@@ -41,13 +41,25 @@ const OutputList: React.FC<OutputListProps> = ({
   }, [plainText, fileType]);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 pt-3 mt-3 border-t-2 border-gray-400">
       {outputs.readFunctions.map((func) => {
-        return <FunctionCard key={`read-${func.name}`} abiFunction={func} />;
+        return (
+          <FunctionCard
+            key={`read-${func.name}`}
+            abiFunction={func}
+            contractAddress={contractAddress}
+          />
+        );
       })}
 
       {outputs.writeFunctions.map((func) => {
-        return <FunctionCard key={`read-${func.name}`} abiFunction={func} />;
+        return (
+          <FunctionCard
+            key={`read-${func.name}`}
+            abiFunction={func}
+            contractAddress={contractAddress}
+          />
+        );
       })}
     </div>
   );
