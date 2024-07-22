@@ -17,14 +17,14 @@ const ConnectButton: React.FC = () => {
       {isConnected && address ? (
         <button
           onClick={() => open({ view: 'Account' })}
-          className="border border-white w-fit"
+          className="border border-white w-fit px-4 py-2"
         >
           {slicedAddress}
         </button>
       ) : (
         <button
           onClick={() => open({ view: 'Connect' })}
-          className="border border-white w-fit"
+          className="border border-white w-fit px-4 py-2"
         >
           Connect Wallet
         </button>

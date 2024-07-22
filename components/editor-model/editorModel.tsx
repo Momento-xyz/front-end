@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import Editor from './editor/editor';
 import { FileType } from './editorModel.type';
+import { detectFileType } from './editorModel.helper';
+import Form from './form/form';
+import OutputList from './output-list/output-list';
 
 const EditorModel: React.FC = () => {
   const [plainText, setPlainText] = useState<string | undefined>(
     '// Insert a .sol file content or an ABI',
   );
   const [fileType, setFileType] = useState<FileType>('plaintext');
+  const [address, setAddress] = React.useState<string>('');
 
   React.useEffect(() => {
     if (plainText) {
@@ -15,20 +19,6 @@ const EditorModel: React.FC = () => {
       setFileType(type);
     }
   }, [plainText]);
-
-  const detectFileType = (content: string): FileType => {
-    try {
-      const parsedContent = JSON.parse(content);
-      if (Array.isArray(parsedContent)) {
-        return 'json';
-      }
-    } catch {
-      if (content.includes('pragma solidity')) {
-        return 'sol';
-      }
-    }
-    return 'plaintext';
-  };
 
   const handleEditorChange = (rawCode: string | undefined) => {
     setPlainText(rawCode);
@@ -45,10 +35,16 @@ const EditorModel: React.FC = () => {
           fileType={fileType}
         />
       </div>
-      <div className="col-span-1 p-4">
+      <div className="flex flex-col gap-2 col-span-1 p-4">
         <p>
           Detected file type: {fileType !== 'plaintext' ? fileType : 'Unknown'}
         </p>
+        <Form address={address} setAddress={setAddress} />
+        <OutputList
+          plainText={plainText}
+          fileType={fileType}
+          address={address}
+        />
       </div>
     </div>
   );

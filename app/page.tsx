@@ -1,5 +1,4 @@
 'use client';
-import Editor from '@/components/editor-model/editor/editor';
 import EditorModel from '@/components/editor-model/editorModel';
 import SwitchNetworkSelect from '@/components/selects/switchNetwork';
 
