@@ -13,7 +13,7 @@ const Form: React.FC<FormProps> = ({ address, setAddress }) => {
       <input
         id="contract"
         type="text"
-        className="w-full px-3 py-2 border border-gray-300 bg-black"
+        className="w-full px-3 py-2 border border-gray-300 bg-gray-800"
         placeholder="Contract address"
         value={address}
         onChange={(e) => setAddress(e.target.value)}

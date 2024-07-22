@@ -1,7 +1,14 @@
+export enum StateMutability {
+  Pure = 'pure',
+  View = 'view',
+  Payable = 'payable',
+  NonPayable = 'nonpayable',
+}
+
 export type AbiFunction = {
   name: string;
   type: string;
-  stateMutability: string;
+  stateMutability: StateMutability;
   inputs: Array<{ name: string; type: string }>;
   outputs?: Array<{ name: string; type: string }>;
 };

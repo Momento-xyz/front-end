@@ -4,6 +4,7 @@ import {
   ExtractedFunctions,
   extractFunctionsFromAbi,
 } from '@/services/data-conversion';
+import FunctionCard from './function-card/function-card';
 
 interface OutputListProps {
   plainText: string | undefined;
@@ -31,19 +32,22 @@ const OutputList: React.FC<OutputListProps> = ({
         writeFunctions: writeFunctions,
       });
     } else if (fileType === 'sol' && plainText) {
+    } else {
+      setOutputs({
+        readFunctions: [],
+        writeFunctions: [],
+      });
     }
   }, [plainText, fileType]);
 
   return (
     <div className="flex flex-col gap-3">
       {outputs.readFunctions.map((func) => {
-        console.log(func);
-        return <div key={`read-${func.name}`}>{func.name}</div>;
+        return <FunctionCard key={`read-${func.name}`} abiFunction={func} />;
       })}
 
       {outputs.writeFunctions.map((func) => {
-        console.log(func);
-        return <div key={`read-${func.name}`}>{func.name}</div>;
+        return <FunctionCard key={`read-${func.name}`} abiFunction={func} />;
       })}
     </div>
   );
