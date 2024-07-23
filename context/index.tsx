@@ -7,18 +7,17 @@ import { createWeb3Modal } from '@web3modal/wagmi/react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { State, WagmiProvider, Chain } from 'wagmi';
+import { State, WagmiProvider } from 'wagmi';
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 
 import { cookieStorage, createStorage } from 'wagmi';
 import * as chains from 'wagmi/chains';
+import { type Chain } from 'viem';
 
 // Convert chains object to array and filter to include only valid Chain types
-const supportedChainsArray = Object.values(chains).filter(
-  (chain): chain is Chain => {
-    return (chain as Chain).id !== undefined;
-  },
-) as Chain[];
+const supportedChainsArray = Object.values(chains).filter((chain) => {
+  return (chain as Chain).id !== undefined;
+}) as Chain[];
 
 // Ensure the array has at least one element and cast it to a tuple type
 if (supportedChainsArray.length === 0) {
