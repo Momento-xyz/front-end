@@ -30,7 +30,6 @@ export const extractFunctionsFromAbi = (
   abiContent: any,
 ): ExtractedFunctions => {
   const abi = Array.isArray(abiContent) ? abiContent : abiContent.abi;
-
   const readFunctions: AbiFunction[] = [];
   const writeFunctions: AbiFunction[] = [];
 
